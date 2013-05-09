@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  subject { page }
+  subject { page }  # this says that everything im doing is going to be on page.should/should_not
 
   describe "Home page" do
-    before { visit root_path }
+    before { visit root_path } # this says that for describing page, go there first then do items
 
     it { should have_selector('h1',    text: 'Sample App') }
     it { should have_selector('title', text: full_title('')) }
