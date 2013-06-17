@@ -11,7 +11,6 @@ $cornflowerLight: #abc;
 
 
 /* universal */
-
 html {
 	overflow-y: scroll;
 }
@@ -36,7 +35,6 @@ textarea {
 }
 
 /* typography */
-
 h1, h2, h3, h4, h5, h6 {
 	line-height: 1;
 }
@@ -63,7 +61,6 @@ p {
 }
 
 /* header - the black area up top*/
-
 #logo {
 	float: left;
 	margin-right: 10px;
@@ -81,7 +78,6 @@ p {
 }
 
 /* footer */
-
 footer {
 	margin-top: 45px;
 	padding-top: 5px;
@@ -142,4 +138,30 @@ aside {
 .gravatar {
 	float: left;
 	margin-right: 10px;
+}
+
+/* forms */
+input, textarea, select, .uneditable-input {
+	border: 1px solid #bbb;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px; 
+	@include box_sizing;
+}
+
+input {
+	height: auto !important;
+}
+
+#error_explanation {
+	color: #f00;
+	ul {
+		list-style: none;
+		margin: 0 0 18px 0;
+	}
+}
+
+.field_with_errors {
+	@extend .control-group;
+	@extend .error;
 }

@@ -20,6 +20,31 @@ describe "User Pages" do
 
     it { should have_selector('h1', text: 'Sign up') }
     it { should have_selector('title', text: full_title('Sign up')) }
-  end
 
+    let(:submit) { "Create my account" }
+
+    # checks the before clicking submit and after clicking submit
+    # to see if User.count has changed (it shouldn't have)
+    describe "with invalid info" do
+      it "should not create a user" do
+        expect { click_button submit }.not_to change(User, :count)
+      end
+    end
+
+    # fills in the form, then checks to see if user was created
+    # and count has +1'd
+    describe "with valid info" do
+      before do
+        fill_in "Name",         with: "Test user"
+        fill_in "Email",        with: "rbatta@gmail.com"
+        fill_in "Password",     with: "testtest"
+        fill_in "Confirmation", with: "testtest"
+      end
+
+      it "should create a user" do
+        expect { click_button submit }.to change(User, :count).by(1)
+      end
+    end
+
+  end
 end
