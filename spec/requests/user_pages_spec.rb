@@ -4,6 +4,7 @@ describe "User Pages" do
   
   subject { page }
 
+  # PROFILE PAGE 
   describe "profile page" do
     # Code to make a user variable user factory_girl
     # made it work with "no 'users' table" error by running
@@ -13,8 +14,9 @@ describe "User Pages" do
 
     it { should have_selector('h1',   text: user.name ) }
     it { should have_selector('title',  text: user.name ) }
-  end
+  end  # END PROFILE PAGE
 
+  # SIGN UP PAGE
   describe "sign up page" do
     before { visit signup_path }
 
@@ -63,5 +65,23 @@ describe "User Pages" do
 
     end
 
-  end
+  end  # END SIGN UP PAGE
+
+  # EDIT PAGE
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+
+    describe "page" do
+      it { should have_selector('h1',     text: "Update your profile") }
+      it { should have_selector('title',  text: "Edit user") }
+      it { should have_link('Change',     href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid info" do
+      before { click_button "Save changes" }
+
+      it { should have_content('error') }
+    end
+  end  # END EDIT PAGE
 end
