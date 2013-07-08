@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:session][:password])
 			# if correct sign in properly and redirect to user page
 			sign_in user
-			redirect_to user
+			redirect_back_or user
 		else
 			# if incorrect, pop up error msg and re-render signin form
 			# flash persists over other pages
